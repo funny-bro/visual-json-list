@@ -1,6 +1,6 @@
 # visual-json-list
 
-> My amazing Nuxt.js project
+> My pioneering Nuxt.js project
 
 ## Build Setup
 

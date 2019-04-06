@@ -1,14 +1,12 @@
 <template>
-  <no-ssr>
-    <div class='gridItemContainer'>
-      <!-- {{item}} -->
-      <div class='imageBox' :style='slideStyle(item.imageUrl)' />
-      <Tooltip v-if='item.id' :text='item.id'/>
-      <Tooltip v-if='item.title' :text='item.title'/>
-      <!-- <div class='text' v-if='item.id'> {{item.id}} </div>
-      <div class='text' v-if='item.title'> {{item.title}} </div> -->
-    </div>
-  </no-ssr>
+  <div class='gridItemContainer'>
+    <!-- {{item}} -->
+    <div class='imageBox' v-if='item.imageUrl' :style='slideStyle(item.imageUrl)' />
+    <Tooltip v-if='item.id' :text='item.id'/>
+    <Tooltip v-if='item.title' :text='item.title'/>
+    <!-- <div class='text' v-if='item.id'> {{item.id}} </div>
+    <div class='text' v-if='item.title'> {{item.title}} </div> -->
+  </div>
 </template>
 
 <script>

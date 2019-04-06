@@ -67,6 +67,7 @@ export default {
     }
   },
   async asyncData ({ query }) {
+    console.log(' -=-=-= index.vue.asyncData')
     const {url = '', headers = '', itemListLocate = '', itemImageUrl= '', itemTitle = ''} = query
 
     if (process.server) {

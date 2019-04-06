@@ -1,9 +1,7 @@
 <template>
-  <no-ssr>
-    <pre class="prettyprint">
-      {{dataString}}
-    </pre>
-  </no-ssr>
+  <pre class="prettyprint" v-if='dataString'>
+    {{dataString}}
+  </pre>
 </template>
 
 <script>

@@ -1,5 +1,4 @@
 <template>
-  <no-ssr>
     <div class='itemListContainer'>
       <div v-if='itemList' v-for='(item, index) of itemList' class='itemBox'>
         <GridItem :key='index' :item='item'/>
@@ -8,7 +7,6 @@
         Incorrect data
       </div>
     </div>
-  </no-ssr>
 </template>
 
 <script>
