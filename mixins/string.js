@@ -11,20 +11,27 @@ const StringMixin = {
       }
     },
     retrieveObject: function(dataObj, iterableString = ''){
-      if(!iterableString) return dataObj
+      try{
+        if(!iterableString) return dataObj
 
-      const currentString = iterableString.split('.')[0]
-
-      if(currentString.includes('[') && currentString.includes(']')){
-        const key = iterableString.split('[')[0]
-        const index = currentString.split('[').pop().split(']')[0];
-        const indexOfNext = iterableString.indexOf('].')
-        const _nextIterableString = iterableString.slice(indexOfNext+2)  // included '.'
-        return this.retrieveObject(dataObj[key][index], _nextIterableString)
+        const currentString = iterableString.split('.')[0]
+  
+        if(currentString.includes('[') && currentString.includes(']')){
+          const key = iterableString.split('[')[0]
+          const index = currentString.split('[').pop().split(']')[0];
+          const indexOfNext = iterableString.indexOf('].')
+          const _nextIterableString = iterableString.slice(indexOfNext+2)  // included '.'
+          return this.retrieveObject(dataObj[key][index], _nextIterableString)
+        }
+  
+        const nextIterableString = iterableString.split('.').slice(1).join('.')
+        return this.retrieveObject(dataObj[currentString], nextIterableString)
       }
-
-      const nextIterableString = iterableString.split('.').slice(1).join('.')
-      return this.retrieveObject(dataObj[currentString], nextIterableString)
+      catch(err){
+        console.log(err)
+        console.log(`[ERROR] retriveveObject, iterableString: ${iterableString}`)
+        return ''
+      }
 
     }
   }

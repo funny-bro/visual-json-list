@@ -37,13 +37,11 @@ export default {
     itemList: function(){
       try {
         const {data = {}, itemListLocate, itemImageUrl, itemTitle} = this
-        console.log('itemListLocate: ', itemListLocate)
-        console.log('itemImageUrl: ', itemImageUrl)
         const listLocate = this.retrieveObject(data, itemListLocate)
 
         return listLocate.map(item => {
-          const imageUrl = this.retrieveObject(item, itemImageUrl)
-          const title = this.retrieveObject(item, itemTitle)
+          const imageUrl = itemImageUrl && this.retrieveObject(item, itemImageUrl)
+          const title = itemTitle && this.retrieveObject(item, itemTitle)
           // const imageUrl = this.retrieveObject(item, itemImageUrl)
           return { imageUrl, title}
         })
