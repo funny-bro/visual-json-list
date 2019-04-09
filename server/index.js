@@ -1,6 +1,7 @@
 const express = require('express')
 const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')
+const bodyParser = require('body-parser')
 const app = express()
 
 // Import and Set Nuxt.js options
@@ -21,6 +22,12 @@ async function start() {
     await nuxt.ready()
   }
 
+  app.use(bodyParser.urlencoded({ extended: false }))
+  app.use(bodyParser.json());
+  app.use(require('./middleware/csrf').init)
+  app.use(require('cookie-parser')())
+  app.use('/api/auth/', require('./router/auth'))
+  app.use('/api/urlcontent/', require('./router/urlcontent'))
   // Give nuxt middleware to express
   app.use(nuxt.render)
 
