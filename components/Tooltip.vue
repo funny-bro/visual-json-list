@@ -1,5 +1,5 @@
 <template>
-  <div class="tooltip">
+  <div class="tooltip" v-if='text'>
     {{shortText}}
     <span class="tooltiptext"> {{text}} </span>
   </div>
@@ -17,6 +17,9 @@ export default {
   computed: {
     shortText: function(){
       const {text} = this
+
+      if(!text || !text.slice) return ''
+
       if(text.length <=10) return text
 
       return text.slice(0,9)
