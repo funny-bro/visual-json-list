@@ -13,7 +13,7 @@
 
     <hr> 
 
-    <section class="container jsonData" v-if='itemListLocate'>
+    <section class="container jsonData">
       <h2> API Response </h2>
       <VisualListContainer
         :dataString='responseData'
