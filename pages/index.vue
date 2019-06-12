@@ -14,28 +14,26 @@
     <hr> 
 
     <section class="container jsonData">
-      <h2> API Response </h2>
-      <VisualListContainer
-        :dataString='responseData'
-        :itemListLocate='itemListLocate'
-        :itemImageUrl='itemImageUrl'
-        :itemTitle='itemTitle'
-      />
+      <h2> Gride Items <a :href='getGrideItemsUrl()' target='blank' class='openButton'> open </a></h2>
+      <iframe v-if="responseData" id="exframe" :src="getGrideItemsUrl()" />
     </section>
 
     <hr> 
 
-    <section class="container jsonData">
+    <section class="jsonData">
       <h2> API Response </h2>
-      <CodeContainer :dataString='responseData'/>
+      <!-- <CodeContainer :dataString='responseData'/> -->
+      <CodeTreeContainer :dataString='responseData'/>
     </section>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+import queryString from 'query-string'
 import HeadComponent from '@/components/Header.vue'
 import CodeContainer from '@/components/CodeContainer.vue'
+import CodeTreeContainer from '@/components/CodeTreeContainer.vue'
 import VisualListContainer from '@/components/VisualListContainer.vue'
 import RequestConfigForm from '@/components/RequestConfigForm.vue'
 
@@ -60,14 +58,14 @@ const saflyParse = (dataString) => {
 }
 
 export default {
-  components: {HeadComponent, CodeContainer, VisualListContainer, RequestConfigForm},
+  name: 'PageHome',
+  components: {HeadComponent, CodeContainer, CodeTreeContainer, VisualListContainer, RequestConfigForm},
   mounted: function(){
     if (!this.$isServer && this.responseData) {
       setTimeout(()=> scrollTo(0,400), 200)
     }
   },
   async asyncData ({ query }) {
-    console.log(' -=-=-= index.vue.asyncData')
     const {url = '', headers = '', itemListLocate = '', itemImageUrl= '', itemTitle = ''} = query
 
     if (process.server) {
@@ -85,7 +83,8 @@ export default {
           headers: headers || '',
           itemImageUrl: itemImageUrl || '',
           itemTitle: itemTitle || '',
-          responseData: saflyStringify(data) || ''
+          responseData: saflyStringify(data) || '',
+          query
         }
       }
       catch(error){
@@ -104,6 +103,12 @@ export default {
       }
     }
   },
+  methods: {
+    getGrideItemsUrl: function () {
+      const {query} = this
+      return `/itemlist?${queryString.stringify(query)}`
+    }
+  }
 }
 </script>
 <style>
@@ -136,5 +141,22 @@ section pre {
   font-weight: 600;
   font-size: 24px;
   margin-bottom: 20px;
+}
+.openButton {
+  text-decoration: none;
+  color: black;
+  padding: 5px 10px;
+  border-radius: 2px;
+  font-size: 14px;
+  font-weight: 300;
+  border: gray solid 1px;
+  line-height: 30px;
+  margin-left: 10px;
+}
+
+#exframe {
+  width: 100%;
+  border: none;
+  min-height: 800px;
 }
 </style>

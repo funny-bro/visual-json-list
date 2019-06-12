@@ -1,9 +1,21 @@
 <template>
   <div>
+    <Toast :message='notificationMessage'/>
     <nuxt />
   </div>
 </template>
-
+<script>
+import Toast from '@/components/Common/Toast'
+export default {
+  name: 'DefaultLayout',
+  components: { Toast },
+  computed: {
+    notificationMessage: function() {
+      return this.$store.state.system.notificationMessage
+    }
+  },
+}
+</script>
 <style>
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
