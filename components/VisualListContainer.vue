@@ -37,7 +37,9 @@ export default {
     itemList: function(){
       try {
         const {data = {}, itemListLocate, itemImageUrl, itemTitle} = this
-        const listLocate = this.retrieveObject(data, itemListLocate)
+        const listLocate = this.retrieveObject(data, itemListLocate) || []
+
+        if(!listLocate.map) return null
 
         return listLocate.map(item => {
           const imageUrl = itemImageUrl && this.retrieveObject(item, itemImageUrl)

@@ -16,7 +16,8 @@ const saflyStringify = (data) => {
     return JSON.stringify(data, null, 4)
   }
   catch(err) {
-    console.log('[ERROR] saflyStringify: ', data)
+    console.log('[ERROR] saflyStringify itemlist.vue: ', err)
+    console.log('[ERROR] saflyStringify itemlist.vue: ', data)
     return ''
   }
 }
@@ -26,7 +27,8 @@ const saflyParse = (dataString) => {
     return JSON.parse(dataString, null, 4)
   }
   catch(err) {
-    console.log('[ERROR] saflyParse: ', dataString)
+    console.log('[ERROR] saflyParse  itemlist.vue: ', err)
+    console.log('[ERROR] saflyParse  itemlist.vue: ', dataString)
     return {}
   }
 }

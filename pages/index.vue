@@ -52,7 +52,8 @@ const saflyParse = (dataString) => {
     return JSON.parse(dataString, null, 4)
   }
   catch(err) {
-    console.log('[ERROR] saflyParse: ', dataString)
+    console.log('[ERROR] saflyParse index.vue: ', err)
+    console.log('[ERROR] saflyParse index.vue: ', dataString)
     return {}
   }
 }
