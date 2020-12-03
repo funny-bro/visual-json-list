@@ -1,9 +1,17 @@
 <template>
   <div class='gridItemContainer'>
     <!-- {{item}} -->
-    <div class='imageBox' v-if='item.imageUrl' :style='slideStyle(item.imageUrl)' />
-    <Tooltip v-if='item.id' :text='item.id'/>
-    <Tooltip v-if='item.title' :text='item.title'/>
+    <div v-if='fullsize' class='listImageItemContainer'>
+      <a :href='item.imageUrl' target='_blank'>
+        <img class='listImageItem' :src='item.imageUrl' />
+        <p class='imageTitle'>{{item.imageUrl}}</p> 
+      </a>
+    </div>
+    <div v-else>
+      <div class='imageBox' v-if='item.imageUrl' :style='slideStyle(item.imageUrl)' />
+      <Tooltip v-if='item.id' :text='item.id'/>
+      <Tooltip v-if='item.title' :text='item.title'/>
+    </div>
     <!-- <div class='text' v-if='item.id'> {{item.id}} </div>
     <div class='text' v-if='item.title'> {{item.title}} </div> -->
   </div>
@@ -17,6 +25,10 @@ export default {
     item: {
       type: Object,
       default: ()=> ({})
+    },
+    fullsize: {
+      type: Boolean,
+      default: false
     }
   },
   methods: {
@@ -41,5 +53,13 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
   height: 200px;
+}
+.listImageItemContainer{
+}
+.listImageItemContainer .imageTitle{
+}
+.listImageItem{
+  height: 400px;
+  width: auto;
 }
 </style>

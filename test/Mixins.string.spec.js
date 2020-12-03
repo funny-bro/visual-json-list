@@ -44,3 +44,11 @@ describe('retrieveObject: array', () => {
     expect(result).toBe('foo')
   })
 })
+
+describe('retrieveObject: array, 0 layer', () => {
+  test('Should return json object, when given [{foo}]', () => {
+    const json = [{foo: 'foo1'}]
+    const result = StingMixins.methods.retrieveObject(json, '.')
+    expect(result[0].foo).toBe('foo1')
+  })
+})

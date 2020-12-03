@@ -4,6 +4,7 @@
     :itemListLocate='itemListLocate'
     :itemImageUrl='itemImageUrl'
     :itemTitle='itemTitle'
+    :fullsize='fullsize'
   />
 </template>
 
@@ -24,6 +25,10 @@ const saflyStringify = (data) => {
 
 const saflyParse = (dataString) => {
   try{
+    if(typeof dataString === 'object') return dataString
+
+    if(!dataString) return null
+
     return JSON.parse(dataString, null, 4)
   }
   catch(err) {
@@ -37,6 +42,12 @@ export default {
   name:'PageItemList',
   components: {VisualListContainer},
   mounted: function(){
+  },
+  computed: {
+    fullsize: function() {
+      const fullsize = (this.$route.query.fullsize) ? true : false
+      return fullsize
+    }
   },
   async asyncData ({ query }) {
     const {url = '', headers = '', itemListLocate = '', itemImageUrl= '', itemTitle = ''} = query

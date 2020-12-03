@@ -14,6 +14,8 @@ const StringMixin = {
       try{
         if(!iterableString) return dataObj
 
+        if(iterableString ==='.') return dataObj
+
         const currentString = iterableString.split('.')[0]
   
         if(currentString.includes('[') && currentString.includes(']')){

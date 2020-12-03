@@ -1,7 +1,7 @@
 <template>
     <div class='itemListContainer'>
-      <div v-if='itemList' v-for='(item, index) of itemList' class='itemBox'>
-        <GridItem :key='index' :item='item'/>
+      <div v-if='itemList' v-for='(item, index) of itemList' :class='fullsize? "listBox" : "gridBox"'>
+        <GridItem :key='index' :item='item' :fullsize='fullsize'/>
       </div>
       <div v-if='!itemList'>
         Incorrect data
@@ -32,6 +32,10 @@ export default {
       type: String,
       default: ''
     },
+    fullsize: {
+      type: Boolean,
+      default: false
+    }
   },
   computed: {
     itemList: function(){
@@ -69,8 +73,10 @@ export default {
   display: flex;
   flex-wrap: wrap;
 }
-.itemBox {
+.gridBox {
   width:200px;
   /* border: black 1px solid; */
+}
+.listBox {
 }
 </style>
