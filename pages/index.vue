@@ -14,7 +14,10 @@
     <hr> 
 
     <section class="container jsonData">
-      <h2> Gride Items <a :href='getGrideItemsUrl()' target='blank' class='openButton'> open </a></h2>
+      <h2> Gride Items 
+        <a :href='getGrideItemsUrl()' target='blank' class='openButton'> open </a>
+        <a :href='`${getGrideItemsUrl()}&fullsize=true`' target='blank' class='openButton'> open： fullsize </a>
+      </h2>
       <iframe v-if="responseData" id="exframe" :src="getGrideItemsUrl()" />
     </section>
 
